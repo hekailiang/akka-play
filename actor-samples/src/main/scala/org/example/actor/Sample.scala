@@ -11,7 +11,7 @@ object Sample extends App {
   import akka.dispatch.ExecutionContexts._
   import akka.pattern.ask
 
-import scala.concurrent.duration._
+  import scala.concurrent.duration._
 
   override def main(args: Array[String]) {
 
