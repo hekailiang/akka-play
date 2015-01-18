@@ -37,7 +37,7 @@ class TransformationBackend extends Actor {
   override def postStop(): Unit = cluster.unsubscribe(self)
 
   def receive = {
-    case TransformationJob(text) => sender() ! TransformationResult(text.toUpperCase)
+    case TransformationJob(text) => sender() ! TransformationResult(s"$self reply to $sender() with '${text.toUpperCase}'")
     /**
      * A snapshot of the full state, akka.cluster.ClusterEvent.CurrentClusterState, is sent to the subscriber
      * as the first message, followed by events for incremental updates. [Only send at first time, so newly joined
