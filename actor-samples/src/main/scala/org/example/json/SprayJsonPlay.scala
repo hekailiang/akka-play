@@ -42,6 +42,16 @@ case class FormElement( label: String,
                         elements: List[Element] ) extends Element
 
 
+case class Customer(firstName: String,
+                    lastName: String,
+                    id: Option[String] = None,
+                    phoneNumber: Option[String] = None,
+                    address: Option[String] = None,
+                    city: Option[String] = Some("New York"),
+                    country: Option[String] = Some("USA"),
+                    zipCode: Option[String] = None) {
+}
+
 object FormDefinitionFormats extends DefaultJsonProtocol {
 
   // we write the kinds as JsStrings of their values
