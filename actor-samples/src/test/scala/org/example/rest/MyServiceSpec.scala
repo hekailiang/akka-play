@@ -2,6 +2,7 @@ package org.example.rest
 
 import org.scalatest.{Matchers, FreeSpec}
 import spray.testkit.ScalatestRouteTest
+import reflect.runtime.universe.Type
 
 /**
  * Created by kailianghe on 1/20/15.
