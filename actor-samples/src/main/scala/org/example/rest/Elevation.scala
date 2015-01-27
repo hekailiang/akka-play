@@ -10,8 +10,8 @@ case class Location(lat: Double, lng: Double)
 case class GoogleElevationApiResult[T](status: String, results: List[T])
 
 object ElevationJsonProtocol extends DefaultJsonProtocol {
-  implicit val locationFormat = jsonFormat2(Location)
+  implicit val locationFormat = jsonFormat2(Location)  // also can use def here
   implicit val elevationFormat = jsonFormat2(Elevation)
 
-  implicit def googleElevationApiResultFormat[T :JsonFormat] = jsonFormat2(GoogleElevationApiResult.apply[T])
+  implicit def googleElevationApiResultFormat[T : JsonFormat] = jsonFormat2(GoogleElevationApiResult[T])
 }
