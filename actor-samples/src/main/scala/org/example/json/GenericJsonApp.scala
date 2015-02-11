@@ -20,7 +20,7 @@ object ExtraTypes {
   }
 }
 
-case class NotFound() {
+case class NotFound(name:String) {
   def valueAtOneQuarter(f : Double => Double) = f(0.25)
 }
 
@@ -28,6 +28,7 @@ object ContainerProtocol extends DefaultJsonProtocol {
   // "[T : JsonFormat]" used to wired in JsonFormat for generic type, in this case initialize tuple2Format defined
   // in StandardFormats
   implicit def containerFormat[T : JsonFormat] = jsonFormat2(Container[T])
+  implicit val anyvalue = jsonFormat1(NotFound)
 
   import ExtraTypes._
   case class IntOrStringTuple2[String, T : (Int |∨| String)#λ](val _1: String, val _2: T) extends Product2[String, T]
@@ -47,7 +48,7 @@ object GenericJsonApp extends App {
 //    "OK", List( IntOrStringTuple2("Result", "Hello World!"), IntOrStringTuple2("Value", 123) )
 //  );
 
-//  val err = Container("Err", NotFound())
+//  val c = Container("Err", NotFound())
   val c = Container( "OK", List( ("Result", "Hello World"), ("Result2", "Hello World2")) );
   println(c.toJson)
 }
